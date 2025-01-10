@@ -1,10 +1,11 @@
 import './App.css';
+import Weather from './components/Weather';
 
-function App() {
+const  App = () => {
 
   return (
     <>
-      <h1>ukh</h1>
+      <Weather/>
     </>
   );
 }
