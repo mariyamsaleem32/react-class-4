@@ -1,11 +1,10 @@
-import './App.css';
-import Weather from './components/Weather';
+import './index.css';
+import Dashboard from './components/Dashboard';
 
 const  App = () => {
-
   return (
     <>
-      <Weather/>
+      <Dashboard/>
     </>
   );
 }

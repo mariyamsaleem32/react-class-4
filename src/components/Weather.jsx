@@ -1,69 +1,50 @@
 import React, { useRef, useState } from "react";
-import axios from "axios";
 import "./Weather.css";
+// import axios from "axios";
+import search_icon from '../Assets/search.png';
+import clear_icon from '../Assets/clear.png';
+import humidity_icon from '../Assets/humidity.png';
+
+//-----------> images----------------------->
+// import cloud_icon from '../Assets/cloud.png';
+// import drizzle_icon from '../Assets/drizzle.png';
+// import rain_icon from '../Assets/rain.png';
+// import snow_icon from '../Assets/snow.png';
+// import wind_icon from '../Assets/wind.png';
 
 const Weather = () => {
-  // not recommended
-  //   const [city, setCity] = useState("");
+const inputRef = useRef(null)
+const [weatherData, setWeatherData] = useState([1]);
+console.log('data',weatherData);
 
-  const inputRef = useRef(null);
-  const [weatherData, setWeatherData] = useState([]);
 
-  const getCityName = async () => {
-    // not recommended
-    // let userCityName = document.getElementById("cityName")
-    // console.log(userCityName.value);
-    // axios
+const getCityName =  () => {
+let cityName = inputRef.current.value;
+console.log('cityName',cityName);
+}
 
-    let cityName = inputRef.current.value;
+return (
+<div className="weather">
 
-    try {
-      let res = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=18196adb736a0ff23b9fa214ca394629&units=metric`
-      );
+  <div className="search-bar">
+<input type="text" placeholder="search" ref={inputRef} id="cityName" />
+<img src={search_icon} alt="" onClick={getCityName} />
+  </div>
 
-      setWeatherData([res.data,...weatherData]);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  <img src={clear_icon} alt="" />
+  <p className="temprature">16°C</p>
+  <p className="location">London</p>
 
-  return (
-    <>
-      <div>
-        <label htmlFor="cityName"> Enter your city name</label>
-        {/* not recommended */}
+  <div className="weather-data">
+    <div className="col">
+      <img src={humidity_icon} alt="" />
+    </div>
+    <p>91 %</p>
+    <span>Humidity</span>
+  </div>
 
-        {/* <input
-        type="text"
-        onChange={(e) => {
-          setCity(e.target.value);
-          console.log(city);
-        }}
-        id="cityName"
-      /> */}
-
-        <input type="text" ref={inputRef} id="cityName" />
-        <br />
-        <button onClick={getCityName}>Get Weather</button>
-      </div>
-
-      {weatherData.length ? (
-       weatherData.map((weatherData)=>(
-
-        <div className="card">
-        <p>cityName {weatherData?.name}</p>
-        <p>country {weatherData?.sys?.country} </p>
-        <p>temp {weatherData?.main?.temp}</p>
-        <p>feels_like {weatherData?.main?.feels_like}</p>
-        <p>humidity {weatherData?.main?.humidity}</p>
-      </div>
-       ))
-      ) : (
-        ""
-      )}
-    </>
-  );
+</div>
+)
 };
 
 export default Weather;
