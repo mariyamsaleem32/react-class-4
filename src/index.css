@@ -5,8 +5,9 @@
 }
 
 .main {
-  background-color: #e2d4ff;
   min-height: 100vh;
   display: grid;
   font-family: "DM Serif Text", serif;
+  background: linear-gradient(120deg, #ef4680,#500ae4);
+  color: white;
 }
