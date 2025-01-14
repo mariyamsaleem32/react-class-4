@@ -1,12 +1,12 @@
 import './index.css';
-import Dashboard from './components/Dashboard';
+import Weather from './components/Weather';
 
-const  App = () => {
-  return (
-    <>
-      <Dashboard/>
-    </>
-  );
+const App = () => {
+    return (
+        <div className='main'>
+            <Weather/>
+        </div>
+    );
 }
 
 export default App;
